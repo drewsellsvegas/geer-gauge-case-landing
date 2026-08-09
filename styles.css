@@ -1,0 +1,322 @@
+/* ===========================================================
+   Geer Fabrication — Magnetic CAT Gauge Case Set
+   Design system: near-black shop-floor ground, cream gauge-face
+   accent surface, burnt-orange (from the Geer Fab wordmark) as
+   the single CTA color. Type: Big Shoulders (display/stencil)
+   over IBM Plex Sans/Mono (body/data). Single dark world by
+   design — this is a shop-floor brand, not a light one.
+=========================================================== */
+
+:root{
+  --ink: #15161A;
+  --plate: #1D1F23;
+  --plate-raised: #24262B;
+  --line: #34363B;
+  --paper: #F1EDE2;
+  --ash: #97998F;
+  --ash-dim: #6C6E68;
+  --dial: #ECE4CE;
+  --orange: #E2591C;
+  --orange-deep: #B8420E;
+  --orange-bright: #F1793E;
+
+  --c-blue:#3A6DA3;
+  --c-orange:#D9661E;
+  --c-green:#5AA23E;
+  --c-yellow:#E4B72A;
+  --c-black:#232428;
+
+  --display: "Big Shoulders", ui-sans-serif, Arial, sans-serif;
+  --stencil: "Big Shoulders Stencil", "Big Shoulders", ui-sans-serif, sans-serif;
+  --body: "IBM Plex Sans", ui-sans-serif, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+
+  --wrap: 1240px;
+  --edge: clamp(20px, 5vw, 64px);
+}
+
+*, *::before, *::after{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *, *::before, *::after{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+body{
+  margin:0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--body);
+  font-size: 16.5px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img{ max-width:100%; display:block; }
+a{ color: inherit; }
+.wrap{ max-width: var(--wrap); margin: 0 auto; padding: 0 var(--edge); }
+
+::selection{ background: var(--orange); color: var(--ink); }
+
+:focus-visible{ outline: 2px solid var(--orange-bright); outline-offset: 3px; }
+
+h1,h2,h3{ font-family: var(--display); font-weight: 800; text-transform: uppercase; letter-spacing: 0.005em; margin: 0; text-wrap: balance; }
+
+.eyebrow{
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange-bright);
+  display:flex; align-items:center; gap:10px;
+  margin: 0 0 14px;
+}
+.eyebrow::before{ content:""; width:22px; height:1px; background: var(--orange-bright); display:inline-block; }
+
+.btn{
+  font-family: var(--display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 1rem;
+  border-radius: 2px;
+  padding: 15px 30px;
+  display: inline-flex;
+  align-items:center;
+  gap: 10px;
+  text-decoration:none;
+  border: 1px solid transparent;
+  cursor:pointer;
+  transition: background .15s ease, color .15s ease, border-color .15s ease, transform .1s ease;
+}
+.btn-primary{ background: var(--orange); color: var(--ink); }
+.btn-primary:hover{ background: var(--orange-bright); }
+.btn-primary:active{ transform: translateY(1px); }
+.btn-ghost{ border-color: rgba(241,237,226,0.35); color: var(--paper); background:transparent; }
+.btn-ghost:hover{ border-color: var(--paper); }
+
+.price-tag{ font-family: var(--mono); }
+
+/* ---------- Topbar ---------- */
+.topbar{
+  position: sticky; top:0; z-index: 50;
+  background: rgba(21,22,26,0.98);
+  border-bottom: 1px solid var(--line);
+}
+.topbar .wrap{
+  display:flex; align-items:center; justify-content:space-between;
+  height: 68px;
+}
+.wordmark{
+  font-family: var(--display); font-weight:800; text-transform:uppercase;
+  font-size: 1.1rem; letter-spacing: 0.02em; text-decoration:none; color: var(--paper);
+  display:flex; flex-direction:column; line-height:1;
+}
+.wordmark span{ font-family: var(--mono); font-size:0.62rem; letter-spacing:0.14em; color: var(--ash); text-transform:uppercase; margin-top:4px; }
+.topnav{ display:flex; align-items:center; gap:30px; }
+.topnav a{ text-decoration:none; color: var(--ash); font-size:0.86rem; letter-spacing:0.03em; }
+.topnav a:hover{ color: var(--paper); }
+.topbar-cta{ display:flex; align-items:center; gap:18px; }
+.topbar-price{ font-family: var(--mono); font-size:0.95rem; color: var(--paper); }
+@media (max-width: 860px){
+  .topnav{ display:none; }
+}
+@media (max-width: 560px){
+  .topbar-price{ display:none; }
+  .btn{ padding: 11px 18px; font-size:0.86rem; }
+}
+
+/* ---------- Hero ---------- */
+.hero{
+  position: relative;
+  min-height: 92vh;
+  display:flex; align-items:flex-end;
+  background: linear-gradient(180deg, rgba(15,16,19,0.35) 0%, rgba(15,16,19,0.55) 45%, rgba(13,13,15,0.94) 100%), url("img/hero-gauge-mounted.jpg") center 30%/cover no-repeat;
+  padding-bottom: clamp(48px, 7vw, 88px);
+  padding-top: 120px;
+}
+.hero-inner{ position:relative; z-index:2; max-width: 760px; }
+.hero h1{
+  font-size: clamp(2.6rem, 6.4vw, 5rem);
+  line-height: 0.98;
+  color: var(--paper);
+}
+.hero h1 em{ font-style:normal; color: var(--orange-bright); }
+.hero-sub{
+  margin: 22px 0 32px;
+  font-size: clamp(1.02rem, 1.6vw, 1.2rem);
+  color: var(--ash);
+  max-width: 52ch;
+}
+.hero-ctas{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+.hero-meta{
+  margin-top: 26px; font-family: var(--mono); font-size:0.78rem; color: var(--ash-dim);
+  letter-spacing: 0.04em;
+}
+
+/* signature gauge dial */
+.spec-stamp{
+  position:absolute; right: var(--edge); bottom: clamp(24px,5vw,60px);
+  z-index:3; display:flex; flex-direction:column; align-items:center; gap:10px;
+  opacity:0.96;
+}
+.gauge-dial{ width: clamp(108px, 12vw, 152px); height:auto; }
+.gauge-ring{ fill:none; stroke: rgba(241,237,226,0.55); stroke-width:2; }
+.gauge-face{ fill: var(--dial); }
+.gauge-ticks line{ stroke:#1b1c20; stroke-width:2.5; stroke-linecap:round; }
+.gauge-ticks line.minor{ stroke-width:1.4; opacity:0.6; }
+.gauge-needle{
+  transform-origin: 100px 100px;
+  transform: rotate(96deg);
+  transition: transform 1.5s cubic-bezier(.2,.9,.25,1.05);
+}
+.gauge-needle.gauge-pre{ transform: rotate(-135deg); transition:none; }
+.gauge-needle line{ stroke: var(--orange-deep); stroke-width:4; stroke-linecap:round; }
+.gauge-hub{ fill:#1b1c20; }
+.gauge-label{ font-family: var(--stencil); font-weight:700; font-size:0.86rem; letter-spacing:0.08em; color: var(--paper); text-transform:uppercase; text-align:center; }
+.gauge-sub{ font-family: var(--mono); font-size:0.62rem; letter-spacing:0.12em; color: var(--ash); text-transform:uppercase; }
+@media (max-width: 700px){ .spec-stamp{ position: static; margin-top: 34px; align-items:flex-start; } }
+
+/* ---------- Spec ticker ---------- */
+.ticker{
+  background: var(--plate-raised);
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  overflow:hidden; white-space:nowrap;
+}
+.ticker-track{
+  display:inline-flex; gap:48px; padding: 14px 0;
+  animation: ticker 26s linear infinite;
+  font-family: var(--mono); font-size:0.78rem; letter-spacing:0.1em; color: var(--ash);
+  text-transform:uppercase;
+}
+.ticker-track span{ display:inline-flex; align-items:center; gap:48px; }
+.ticker-track b{ color: var(--orange-bright); font-weight:600; }
+@keyframes ticker{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+@media (prefers-reduced-motion: reduce){ .ticker-track{ animation:none; } }
+
+/* ---------- Section basics ---------- */
+section{ padding: clamp(64px, 10vw, 120px) 0; }
+.section-head{ max-width: 640px; margin-bottom: 48px; }
+.section-head h2{ font-size: clamp(1.9rem, 4vw, 3rem); line-height:1.02; }
+
+/* ---------- Problem ---------- */
+.problem{ border-bottom: 1px solid var(--line); }
+.problem .wrap{ max-width: 880px; }
+.problem-lead{
+  font-family: var(--display); font-weight:600; text-transform:none;
+  font-size: clamp(1.3rem, 2.6vw, 1.85rem); line-height:1.4; color: var(--paper);
+  margin: 0 0 30px;
+}
+.problem-punch{
+  font-family: var(--stencil); font-weight:700; text-transform:uppercase;
+  font-size: clamp(1.7rem, 3.6vw, 2.6rem); color: var(--orange-bright); line-height:1.1; margin:0;
+}
+
+/* ---------- Features ---------- */
+.features{ border-bottom: 1px solid var(--line); }
+.feature-grid{ display:grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items:start; }
+.feature-list{ display:flex; flex-direction:column; gap:0; }
+.feature-item{ display:grid; grid-template-columns: 30px 1fr; gap:16px; padding:22px 0; border-top:1px solid var(--line); }
+.feature-item:last-child{ border-bottom:1px solid var(--line); }
+.feature-dot{ width:10px; height:10px; border-radius:50%; background: var(--orange); margin-top:8px; }
+.feature-item h3{ font-size:1.15rem; margin-bottom:6px; }
+.feature-item p{ margin:0; color: var(--ash); font-size:0.98rem; max-width: 46ch; }
+
+.lens-stack{ display:flex; flex-direction:column; gap:40px; }
+.lens{ position:relative; }
+.lens-frame{
+  aspect-ratio: 1/1; border-radius:50%; overflow:hidden; position:relative;
+  border: 6px solid var(--plate-raised); box-shadow: 0 0 0 1px var(--line), inset 0 0 40px rgba(0,0,0,0.4);
+}
+.lens-frame img{ width:100%; height:100%; object-fit:cover; }
+.lens-cap{
+  margin-top:16px; font-family: var(--mono); font-size:0.78rem; color: var(--ash); text-align:center;
+  letter-spacing:0.02em;
+}
+@media (max-width: 900px){
+  .feature-grid{ grid-template-columns:1fr; }
+  .lens-stack{ flex-direction:row; flex-wrap:wrap; justify-content:center; }
+  .lens{ width: 220px; }
+}
+
+/* ---------- Who it's for ---------- */
+.who{ border-bottom:1px solid var(--line); }
+.who-grid{ display:grid; grid-template-columns: 0.85fr 1.15fr; gap:56px; align-items:center; }
+.who-copy p{ color: var(--ash); font-size: 1.05rem; max-width: 46ch; }
+.who-photo{ border-radius:3px; overflow:hidden; border:1px solid var(--line); }
+.who-photo img{ width:100%; height:100%; object-fit:cover; aspect-ratio: 4/5; }
+@media (max-width: 900px){
+  .who-grid{ grid-template-columns:1fr; }
+  .who-grid{ display:flex; flex-direction:column-reverse; gap:32px; }
+}
+
+/* ---------- Colors ---------- */
+.colors{ border-bottom:1px solid var(--line); background: var(--plate); }
+.colors-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:56px; align-items:center; }
+.colors-photo{ border-radius:3px; overflow:hidden; border:1px solid var(--line); aspect-ratio: 4/3; }
+.colors-photo img{ width:100%; height:100%; object-fit:cover; object-position: center 30%; }
+.swatch-legend{ display:flex; flex-wrap:wrap; gap:12px; margin: 28px 0 32px; }
+.swatch-chip{
+  display:flex; align-items:center; gap:9px; font-family: var(--mono); font-size:0.82rem;
+  border:1px solid var(--line); border-radius:20px; padding:7px 14px 7px 9px; color: var(--paper);
+}
+.swatch-dot{ width:14px; height:14px; border-radius:50%; display:inline-block; border:1px solid rgba(0,0,0,0.25); }
+.colors p.note{ color: var(--ash-dim); font-family: var(--mono); font-size:0.8rem; margin-top:18px; }
+@media (max-width: 900px){ .colors-grid{ grid-template-columns:1fr; } .colors-photo{ order:-1; } }
+
+/* ---------- Trust ---------- */
+.trust{ position:relative; border-bottom:1px solid var(--line); }
+.trust-bg{
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(21,22,26,0.94), rgba(21,22,26,0.88)), url("img/four-gauges-cab.jpg") center/cover no-repeat;
+}
+.trust .wrap{ position:relative; z-index:1; }
+.trust-cards{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.trust-card{
+  background: rgba(24,25,29,0.94); border:1px solid var(--line); border-radius:3px; padding:26px 24px;
+}
+.trust-card .kicker{ font-family: var(--mono); font-size:0.72rem; letter-spacing:0.1em; color: var(--orange-bright); text-transform:uppercase; margin-bottom:10px; }
+.trust-card h3{ font-size:1.05rem; text-transform:none; font-family: var(--body); font-weight:700; margin-bottom:10px; }
+.trust-card p{ margin:0; color: var(--ash); font-size:0.94rem; }
+@media (max-width: 900px){ .trust-cards{ grid-template-columns:1fr; } }
+
+/* ---------- FAQ ---------- */
+.faq-list{ max-width: 760px; }
+.faq-item{ border-top:1px solid var(--line); }
+.faq-list .faq-item:last-child{ border-bottom:1px solid var(--line); }
+.faq-item summary{
+  cursor:pointer; list-style:none; padding: 22px 4px; display:flex; align-items:center; justify-content:space-between; gap:20px;
+  font-family: var(--display); font-weight:700; text-transform:uppercase; font-size:1.02rem; letter-spacing:0.01em;
+}
+.faq-item summary::-webkit-details-marker{ display:none; }
+.faq-item summary::after{
+  content:"+"; font-family: var(--mono); font-size:1.4rem; color: var(--orange); flex:none; transition: transform .18s ease;
+}
+.faq-item[open] summary::after{ content:"–"; }
+.faq-item .faq-a{ padding: 0 4px 24px; color: var(--ash); max-width:64ch; }
+
+/* ---------- Final CTA ---------- */
+.final-cta{
+  text-align:center; background: var(--plate-raised); border-bottom:1px solid var(--line);
+}
+.final-cta h2{ font-size: clamp(1.9rem,4.4vw,3.4rem); max-width:820px; margin:0 auto 22px; }
+.final-price{ font-family: var(--mono); font-size:1.1rem; color: var(--ash); margin-bottom:28px; }
+.final-price b{ color: var(--paper); font-size:1.4rem; }
+.final-cta .btn{ font-size:1.1rem; padding:18px 38px; }
+.final-note{ margin-top:20px; font-family: var(--mono); font-size:0.8rem; color: var(--ash-dim); letter-spacing:0.03em; }
+
+/* ---------- Footer ---------- */
+footer{ padding: 56px 0 40px; }
+.foot-grid{ display:flex; justify-content:space-between; align-items:flex-start; gap:32px; flex-wrap:wrap; }
+.foot-brand{ display:flex; align-items:center; gap:14px; }
+.foot-brand img{ width:44px; height:44px; border-radius:6px; }
+.foot-brand-text{ font-family: var(--display); font-weight:800; text-transform:uppercase; font-size:1rem; }
+.foot-brand-text span{ display:block; font-family: var(--mono); font-size:0.7rem; color: var(--ash); letter-spacing:0.06em; text-transform:uppercase; margin-top:4px; }
+.foot-links{ display:flex; gap:44px; flex-wrap:wrap; font-size:0.9rem; }
+.foot-col h4{ font-family: var(--mono); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color: var(--ash-dim); margin:0 0 10px; }
+.foot-col a, .foot-col div{ color: var(--ash); text-decoration:none; margin-bottom:6px; display:block; font-size:0.92rem; }
+.foot-col a:hover{ color: var(--paper); }
+.legal{
+  margin-top: 44px; padding-top: 22px; border-top:1px solid var(--line);
+  font-family: var(--mono); font-size:0.72rem; color: var(--ash-dim); line-height:1.7;
+}
